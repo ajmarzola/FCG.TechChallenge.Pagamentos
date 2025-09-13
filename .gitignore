@@ -1,0 +1,35 @@
+@'
+# Visual Studio / VS Code
+.vs/
+.vscode/
+.idea/
+
+# Build
+[Bb]in/
+[Oo]bj/
+[Tt]estResults/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Usuário / temporários
+*.user
+*.suo
+*.log
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# DB local
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+
+# Outros
+node_modules/
+.env
+'@ | Set-Content -Encoding UTF8 .gitignore
