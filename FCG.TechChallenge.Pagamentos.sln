@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCG.TechChallenge.Pagamento
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCG.TechChallenge.Pagamentos.Test", "FCG.TechChallenge.Pagamentos.Test\FCG.TechChallenge.Pagamentos.Test.csproj", "{134E9E03-2C25-4859-B886-43C007A7015B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCG.TechChallenge.Pagamentos.Presentation", "FCG.TechChallenge.Pagamentos.Presentation\FCG.TechChallenge.Pagamentos.Presentation.csproj", "{9247C548-46A3-4F26-81B8-EA989C25DB33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{134E9E03-2C25-4859-B886-43C007A7015B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{134E9E03-2C25-4859-B886-43C007A7015B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{134E9E03-2C25-4859-B886-43C007A7015B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9247C548-46A3-4F26-81B8-EA989C25DB33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9247C548-46A3-4F26-81B8-EA989C25DB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9247C548-46A3-4F26-81B8-EA989C25DB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9247C548-46A3-4F26-81B8-EA989C25DB33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,6 @@
+@FCG.TechChallenge.Pagamentos.Presentation_HostAddress = http://localhost:5168
+
+GET {{FCG.TechChallenge.Pagamentos.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
