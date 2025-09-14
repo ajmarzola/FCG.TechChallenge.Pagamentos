@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="12.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FCG.TechChallenge.Pagamentos.Domain\FCG.TechChallenge.Pagamentos.Domain.csproj" />
+    <Folder Include="Service\" />
   </ItemGroup>
 
 </Project>
