@@ -33,3 +33,4 @@ packages/
 node_modules/
 .env
 '@ | Set-Content -Encoding UTF8 .gitignore
+/FCG.TechChallenge.Pagamentos.Presentation/appsettings.Development.json
