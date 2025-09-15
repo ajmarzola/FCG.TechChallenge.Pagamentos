@@ -51,7 +51,8 @@ payments.MapPost(
 
         var created = await service.AuthorizeAsync(req, http.RequestAborted);
         return TypedResults.Created($"/payments/{created.Id}", created);
-    });
+    }
+);
 
 // Get by id
 payments.MapGet(

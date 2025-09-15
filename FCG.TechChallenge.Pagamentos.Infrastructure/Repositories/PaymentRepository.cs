@@ -14,9 +14,11 @@ namespace FCG.TechChallenge.Pagamentos.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(Payment payment, CancellationToken ct = default)
+        public async Task<Payment> AddAsync(Payment payment, CancellationToken ct = default)
         {
-            await _context.AddAsync(payment, ct);
+            await _context.Payments.AddAsync(payment, ct);
+            await SaveChangesAsync(ct);
+            return payment;
         }
 
         public async Task<Payment?> GetByIdAsync(int id, CancellationToken ct = default)
