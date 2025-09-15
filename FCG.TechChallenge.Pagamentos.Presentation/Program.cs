@@ -11,7 +11,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    opt.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sql => sql.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
+    )
+);
 
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
@@ -21,6 +25,8 @@ builder.Services.AddValidatorsFromAssembly(typeof(CreatePaymentValidator).Assemb
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
@@ -42,15 +48,26 @@ var payments = app.MapGroup("/payments").WithTags("Payments");
 // Create (Authorize)
 payments.MapPost(
     "/",
-    async Task<Results<Created<PaymentResponse>, ValidationProblem>>
+    async Task<Results<Created<PaymentResponse>, ValidationProblem, ProblemHttpResult>>
     (CreatePaymentRequest req, IPaymentService service, IValidator<CreatePaymentRequest> validator, HttpContext http) =>
     {
-        var v = await validator.ValidateAsync(req);
-        if (!v.IsValid)
-            return TypedResults.ValidationProblem(v.ToDictionary());
+        try
+        {
+            var v = await validator.ValidateAsync(req);
+            if (!v.IsValid)
+                return TypedResults.ValidationProblem(v.ToDictionary());
 
-        var created = await service.AuthorizeAsync(req, http.RequestAborted);
-        return TypedResults.Created($"/payments/{created.Id}", created);
+            var created = await service.AuthorizeAsync(req, http.RequestAborted);
+            return TypedResults.Created($"/payments/{created.Id}", created);
+        }
+        catch (Exception ex)
+        {
+            return TypedResults.Problem(
+                detail: ex.Message,
+                statusCode: StatusCodes.Status500InternalServerError,
+                title: "Unexpected error while processing the payment"
+            );
+        }
     }
 );
 
@@ -95,7 +112,7 @@ payments.MapPost(
     }
 );
 
-
+app.MapHealthChecks("/health");
 
 app.UseHttpsRedirection();
 

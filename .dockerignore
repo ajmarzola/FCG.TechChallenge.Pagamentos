@@ -1,0 +1,16 @@
+**/bin
+**/obj
+**/.vs
+**/.vscode
+**/*.user
+**/*.suo
+**/*.csproj.user
+**/*.sqlite
+**/*.db
+**/*.mdf
+**/*.ldf
+**/*secrets*
+**/node_modules
+.git
+.gitignore
+.env
