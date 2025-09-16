@@ -42,10 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Group routes
 var payments = app.MapGroup("/payments").WithTags("Payments");
 
-// Create (Authorize)
 payments.MapPost(
     "/",
     async Task<Results<Created<PaymentResponse>, ValidationProblem, ProblemHttpResult>>
@@ -71,20 +69,31 @@ payments.MapPost(
     }
 );
 
-// Get by id
 payments.MapGet(
     "/{id:int}",
-    async Task<Results<Ok<PaymentResponse>, NotFound>>
+    async Task<Results<Ok<PaymentResponse>, NotFound, ProblemHttpResult>>
     (int id, IPaymentService service, HttpContext http) =>
     {
-        var res = await service.GetAsync(id, http.RequestAborted);
-        return res is not null ? TypedResults.Ok(res) : TypedResults.NotFound();
-    });
+        try
+        {
+            var res = await service.GetAsync(id, http.RequestAborted);
+            return res is not null ? TypedResults.Ok(res) : TypedResults.NotFound();
+        }
+        catch(Exception ex)
+        {
+            return TypedResults.Problem(
+               detail: ex.Message,
+               statusCode: StatusCodes.Status500InternalServerError,
+               title: "Unexpected error while processing the payment"
+           );
+        }
+       
+    }
+);
 
-// Capture
 payments.MapPost(
     "/{id:int}/capture",
-    async Task<Results<Ok<PaymentResponse>, NotFound, BadRequest<string>>>
+    async Task<Results<Ok<PaymentResponse>, NotFound, BadRequest<string>, ProblemHttpResult>>
     (int id, IPaymentService service, HttpContext http) =>
     {
         try
@@ -94,12 +103,19 @@ payments.MapPost(
         }
         catch (KeyNotFoundException) { return TypedResults.NotFound(); }
         catch (InvalidOperationException e) { return TypedResults.BadRequest(e.Message); }
+        catch (Exception ex)
+        {
+            return TypedResults.Problem(
+               detail: ex.Message,
+               statusCode: StatusCodes.Status500InternalServerError,
+               title: "Unexpected error while processing the capture"
+           );
+        }
     });
 
-// Refund
 payments.MapPost(
     "/{id:int}/refund",
-    async Task<Results<Ok<PaymentResponse>, NotFound, BadRequest<string>>>
+    async Task<Results<Ok<PaymentResponse>, NotFound, BadRequest<string>, ProblemHttpResult>>
     (int id, IPaymentService service, HttpContext http) =>
     {
         try
@@ -109,6 +125,14 @@ payments.MapPost(
         }
         catch (KeyNotFoundException) { return TypedResults.NotFound(); }
         catch (InvalidOperationException e) { return TypedResults.BadRequest(e.Message); }
+        catch (Exception ex)
+        {
+            return TypedResults.Problem(
+               detail: ex.Message,
+               statusCode: StatusCodes.Status500InternalServerError,
+               title: "Unexpected error while processing the refund"
+           );
+        }
     }
 );
 

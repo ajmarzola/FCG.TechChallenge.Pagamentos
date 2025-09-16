@@ -1,5 +1,4 @@
-﻿
-using FCG.TechChallenge.Pagamentos.Application.DTOs;
+﻿using FCG.TechChallenge.Pagamentos.Application.DTOs;
 using FCG.TechChallenge.Pagamentos.Application.Interfaces;
 using FCG.TechChallenge.Pagamentos.Application.Mappers;
 using FCG.TechChallenge.Pagamentos.Domain.Entities;

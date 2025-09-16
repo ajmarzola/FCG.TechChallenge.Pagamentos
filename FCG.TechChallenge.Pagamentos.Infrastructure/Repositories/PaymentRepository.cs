@@ -7,7 +7,7 @@ namespace FCG.TechChallenge.Pagamentos.Infrastructure.Repositories
 {
     public sealed class PaymentRepository : IPaymentRepository
     {
-        protected readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public PaymentRepository(ApplicationDbContext context)
         {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FCG.TechChallenge.Pagamentos.Domain.Enums
+﻿namespace FCG.TechChallenge.Pagamentos.Domain.Enums
 {
     public enum PaymentMethod
     {
