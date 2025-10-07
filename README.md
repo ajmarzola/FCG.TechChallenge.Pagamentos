@@ -2,12 +2,18 @@
 
 > Microsserviço de **Pagamentos** da plataforma **FIAP Cloud Games (FCG)** — evolução do MVP do repositório **Grupo49-TechChallenge**, agora em arquitetura de **microsserviços**, com **mensageria**, **CQRS/Outbox** e componentes serverless para tarefas assíncronas. Consulte também os serviços **Usuários** e **Jogos** para a experiência fim a fim.
 
-- **Usuários**: autenticação, cadastro, perfis  
+- **Usuários** (este repositório): cadastro, autenticação, perfis, emissão de tokens  
   https://github.com/ajmarzola/FCG.TechChallenge.Usuarios
 - **Jogos**: catálogo, compra, busca e integrações (Elasticsearch)  
   https://github.com/ajmarzola/FCG.TechChallenge.Jogos
-- **Pagamentos** (este repositório): orquestração de transações e status, integração por eventos  
+- **Pagamentos**: orquestração de transações e status por eventos  
   https://github.com/ajmarzola/FCG.TechChallenge.Pagamentos
+
+🔎 **Projeto anterior (base conceitual):**  
+https://github.com/ajmarzola/Grupo49-TechChallenge
+
+🧭 **Miro – Visão de Arquitetura:**  
+<https://miro.com/welcomeonboard/VXBnOHN6d0hWOWFHZmxhbzlMenp2cEV3N0FPQm9lUEZwUFVnWC9qWnUxc2ZGVW9FZnZ4SjNHRW5YYVBRTUJEWkFaTjZPNmZMcXFyWUNONEg3eVl4dEdOZWozd0J3RzZld08xM3E1cGl2dTR6QUlJSUVFSkpQcFVSRko1Z0hFSXphWWluRVAxeXRuUUgwWDl3Mk1qRGVRPT0hdjE=?share_link_id=964446466388>
 
 ---
 
