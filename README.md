@@ -55,9 +55,6 @@ Como evolução natural, aproveitamos os conceitos, endpoints e pipelines que vo
   - **Jogos**: emite intent de pagamento; lê o resultado para concluir compra/licenciamento.  
   - **Usuários**: provê contexto de autenticação/claims (JWT) e dados do comprador.
 
-🎯 **Miro (Visão de Arquitetura):**  
-<https://miro.com/welcomeonboard/VXBnOHN6d0hWOWFHZmxhbzlMenp2cEV3N0FPQm9lUEZwUFVnWC9qWnUxc2ZGVW9FZnZ4SjNHRW5YYVBRTUJEWkFaTjZPNmZMcXFyWUNONEg3eVl4dEdOZWozd0J3RzZld08xM3E1cGl2dTR6QUlJSUVFSkpQcFVSRko1Z0hFSXphWWluRVAxeXRuUUgwWDl3Mk1qRGVRPT0hdjE=?share_link_id=964446466388>
-
 ---
 
 ## Tecnologias
