@@ -68,6 +68,11 @@ Como evolução natural, aproveitamos os conceitos, endpoints e pipelines que vo
 
 ---
 
+## Monitoramento
+- Instalação do stack de monitoramento via Helm — ver [values-monitoring.yaml](https://github.com/ajmarzola/Grupo49-TechChallenge/blob/main/infra/monitoring/values-monitoring.yaml)
+
+---
+
 ## Como Rodar (Rápido)
 
 Existem **duas formas** principais de rodar local:

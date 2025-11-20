@@ -7,6 +7,7 @@ using FCG.TechChallenge.Pagamentos.Infrastructure.Repositories;
 using FluentValidation;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -136,6 +137,14 @@ payments.MapPost(
     }
 );
 
+// endpoints de health
+app.MapHealthChecks("/health/live");
+app.MapHealthChecks("/health/ready");
+
+// Middleware Prometheus (expõe /metrics)
+app.UseHttpMetrics();          // métricas de request/latência
+app.MapMetrics("/metrics");    // endpoint padrão Prometheus
+
 app.MapHealthChecks("/health");
 
 app.UseHttpsRedirection();
@@ -143,5 +152,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapGet("/", () => "OK");
 app.Run();
